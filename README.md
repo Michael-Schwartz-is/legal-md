@@ -1,23 +1,12 @@
 # legal-md
 
-Render Markdown legal documents on any website. Export your DOCX to Markdown, host the file, add a few tags. Done.
+Render Markdown files on any website. Add a few tags, point to a `.md` file, done.
 
-Built for legal docs (terms of service, privacy policies, DPAs) that come from lawyers as DOCX files and need to live on a website.
+We built this for legal docs (terms of service, privacy policies, DPAs) that come from lawyers as DOCX files and need to live on a website — but it works for any Markdown content.
 
 ## Setup
 
-### 1. Host your Markdown file
-
-Export your DOCX to Markdown and host the `.md` file. Free options:
-
-| Service | How | URL format |
-|---------|-----|------------|
-| **GitHub** | Commit the file to any repo | `https://cdn.jsdelivr.net/gh/{user}/{repo}/{file}.md` |
-| **GitHub Gist** | Create a gist with the file | Use the raw URL from the gist |
-| **Cloudflare R2** | Upload to a bucket, enable public access | `https://pub-{id}.r2.dev/{file}.md` |
-| **GitHub Pages** | Push to a repo with Pages enabled | `https://{user}.github.io/{repo}/{file}.md` |
-
-### 2. Add the scripts and table styles
+### 1. Add the scripts and table styles
 
 Paste in your site's global custom code. In Webflow, this goes in **Project Settings > Custom Code**.
 
@@ -34,22 +23,37 @@ Before `</body>`:
 <script src="https://cdn.jsdelivr.net/gh/Michael-Schwartz-is/legal-md/legal-md.js"></script>
 ```
 
-### 3. Add a div with the attribute
+### 2. Add a div with the attribute
 
 Add a div element on the page where you want the document to render. Give it a custom attribute:
 
 - **Attribute name:** `data-md-content`
 - **Attribute value:** the URL to your `.md` file
 
+To test that everything works before adding your own file, use our sample:
+
 ```html
-<div data-md-content="https://your-cdn.com/terms-of-use.md"></div>
+<div data-md-content="https://cdn.jsdelivr.net/gh/Michael-Schwartz-is/legal-md/example.md"></div>
 ```
 
-### 4. Apply your rich text styles (optional)
+Once it renders, swap the URL for your own hosted `.md` file.
+
+### 3. Apply your rich text styles (optional)
 
 If your site has a rich text class (like Webflow's Rich Text element used for blog posts), apply that same class to the div. The rendered Markdown will inherit all the typography, spacing, and heading styles already defined for your content pages — so it looks consistent with the rest of your site without any extra CSS work.
 
 In Webflow, this means giving the div the same class as your Rich Text element (e.g., `w-richtext` or whatever custom class you've set up for blog/content styling).
+
+### 4. Host your Markdown file
+
+Export your document to Markdown and host the `.md` file somewhere publicly accessible. Some free options:
+
+| Service | How | URL format |
+|---------|-----|------------|
+| **GitHub** | Commit the file to any repo | `https://cdn.jsdelivr.net/gh/{user}/{repo}/{file}.md` |
+| **GitHub Gist** | Create a gist with the file | Use the raw URL from the gist |
+| **Cloudflare R2** | Upload to a bucket, enable public access | `https://pub-{id}.r2.dev/{file}.md` |
+| **GitHub Pages** | Push to a repo with Pages enabled | `https://{user}.github.io/{repo}/{file}.md` |
 
 ## What It Does
 
@@ -64,7 +68,7 @@ In Webflow, this means giving the div the same class as your Rich Text element (
 DOCX-to-Markdown exports are messy. The script automatically fixes common issues:
 
 - **Multiple H1s** — only the first `#` stays as H1, the rest become H2
-- **Code blocks from indentation** — legal sub-clauses indented with 4+ spaces won't turn into code blocks
+- **Code blocks from indentation** — sub-clauses indented with 4+ spaces won't turn into code blocks
 - **Tab characters in headings** — strips tabs that DOCX converters insert
 
 ## Files
