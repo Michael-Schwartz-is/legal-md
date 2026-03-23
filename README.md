@@ -46,14 +46,17 @@ In Webflow, this means giving the div the same class as your Rich Text element (
 
 ### 4. Host your Markdown file
 
-Export your document to Markdown and host the `.md` file somewhere publicly accessible. Some free options:
+You'll need a `.md` file to point to. If your document is in Google Docs or Word, you can export it as Markdown — in Google Docs go to **File > Download > Markdown (.md)**. For Word files, open them in Google Docs first, then export. Don't worry about the export being messy — the script cleans up common formatting issues automatically.
 
-| Service | How | URL format |
-|---------|-----|------------|
-| **GitHub** | Commit the file to any repo | `https://cdn.jsdelivr.net/gh/{user}/{repo}/{file}.md` |
-| **GitHub Gist** | Create a gist with the file | Use the raw URL from the gist |
-| **Cloudflare R2** | Upload to a bucket, enable public access | `https://pub-{id}.r2.dev/{file}.md` |
-| **GitHub Pages** | Push to a repo with Pages enabled | `https://{user}.github.io/{repo}/{file}.md` |
+Once you have your `.md` file, host it somewhere with a public URL. Some simple options:
+
+| Service | Best for | How |
+|---------|----------|-----|
+| **Pastebin** | Quick and easy | Paste your Markdown at [pastebin.com](https://pastebin.com), set syntax to "None", create. Use the "raw" URL |
+| **Dropbox** | Non-technical teams | Upload the file, create a shared link. Change `dl=0` to `dl=1` at the end of the URL |
+| **Google Drive** | Already using Google Docs | Upload the `.md` file, share as "Anyone with the link", use `https://drive.google.com/uc?export=download&id={FILE_ID}` |
+| **GitHub Gist** | Developers | Create a gist at [gist.github.com](https://gist.github.com), paste content, click "Raw" to get the URL |
+| **Cloudflare R2** | Production sites | Upload to a bucket, enable public access |
 
 ## What It Does
 
