@@ -16,6 +16,8 @@ In the `<head>`:
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Michael-Schwartz-is/legal-md/legal-md.css">
 ```
 
+![CSS link tag in the head section](images/css-tags.png)
+
 Before `</body>`:
 
 ```html
@@ -23,12 +25,16 @@ Before `</body>`:
 <script src="https://cdn.jsdelivr.net/gh/Michael-Schwartz-is/legal-md/legal-md.js"></script>
 ```
 
+![Script tags before closing body tag](images/script-tags.png)
+
 ### 2. Add a div with the attribute
 
 Add a div element on the page where you want the document to render. Give it a custom attribute:
 
 - **Attribute name:** `data-md-content`
 - **Attribute value:** the URL to your `.md` file
+
+![Custom attribute in Webflow](images/attr-md.png)
 
 To test that everything works before adding your own file, use our sample:
 
@@ -46,7 +52,9 @@ In Webflow, this means giving the div the same class as your Rich Text element (
 
 ### 4. Host your Markdown file
 
-You'll need a `.md` file to point to. If your document is in Google Docs or Word, you can export it as Markdown — in Google Docs go to **File > Download > Markdown (.md)**. For Word files, open them in Google Docs first, then export. Don't worry about the export being messy — the script cleans up common formatting issues automatically.
+You'll need a `.md` file to point to. If your document is in Google Docs or Word, you can export it as Markdown — in Google Docs go to **File > Download > Markdown (.md)**.  For Word files, open them in Google Docs first, then export. Don't worry about the export being messy — the script cleans up common formatting issues automatically.
+
+![Exporting Markdown from Google Docs](images/export-markdown.png)
 
 Once you have your `.md` file, host it somewhere with a public URL. Some simple options:
 
