@@ -1,62 +1,78 @@
 # legal-md
 
-Render Markdown legal documents on any website. Export your DOCX to Markdown, host the file, add two script tags and a div. Done.
+Render Markdown legal documents on any website. Export your DOCX to Markdown, host the file, add a few tags. Done.
 
 Built for legal docs (terms of service, privacy policies, DPAs) that come from lawyers as DOCX files and need to live on a website.
 
-## Usage
+## Setup
 
-Add a div with the `data-md-content` attribute pointing to your `.md` file:
+### 1. Host your Markdown file
+
+Export your DOCX to Markdown and host the `.md` file. Free options:
+
+| Service | How | URL format |
+|---------|-----|------------|
+| **GitHub** | Commit the file to any repo | `https://cdn.jsdelivr.net/gh/{user}/{repo}/{file}.md` |
+| **GitHub Gist** | Create a gist with the file | Use the raw URL from the gist |
+| **Cloudflare R2** | Upload to a bucket, enable public access | `https://pub-{id}.r2.dev/{file}.md` |
+| **GitHub Pages** | Push to a repo with Pages enabled | `https://{user}.github.io/{repo}/{file}.md` |
+
+### 2. Add the scripts and table styles
+
+Paste in your site's global custom code. In Webflow, this goes in **Project Settings > Custom Code**.
+
+In the `<head>`:
 
 ```html
-<div data-md-content="https://your-cdn.com/terms-of-use.md"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Michael-Schwartz-is/legal-md/legal-md.css">
 ```
 
-Add the scripts before `</body>`:
+Before `</body>`:
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/marked@15.0.7/marked.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/Michael-Schwartz-is/legal-md/legal-md.js"></script>
 ```
 
-(Optional) Add table styles if your site doesn't style `<table>` elements:
+### 3. Add a div with the attribute
+
+Add a div element on the page where you want the document to render. Give it a custom attribute:
+
+- **Attribute name:** `data-md-content`
+- **Attribute value:** the URL to your `.md` file
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Michael-Schwartz-is/legal-md/legal-md.css">
+<div data-md-content="https://your-cdn.com/terms-of-use.md"></div>
 ```
 
-That's it. Your site's existing CSS styles everything.
+### 4. Apply your rich text styles (optional)
+
+If your site has a rich text class (like Webflow's Rich Text element used for blog posts), apply that same class to the div. The rendered Markdown will inherit all the typography, spacing, and heading styles already defined for your content pages — so it looks consistent with the rest of your site without any extra CSS work.
+
+In Webflow, this means giving the div the same class as your Rich Text element (e.g., `w-richtext` or whatever custom class you've set up for blog/content styling).
 
 ## What It Does
 
 - Fetches a `.md` file and converts it to standard HTML tags (`h1`, `h2`, `p`, `table`, `ul`, etc.)
-- Your site's CSS takes over from there
+- Your site's existing CSS styles everything
 - All links open in a new tab
 - Supports tables, bold, italic, strikethrough (GitHub Flavored Markdown)
 - Multiple documents on one page — just add more divs
 
 ## Auto-Fixes for DOCX Exports
 
-DOCX-to-Markdown exports are messy. The script automatically fixes:
+DOCX-to-Markdown exports are messy. The script automatically fixes common issues:
 
 - **Multiple H1s** — only the first `#` stays as H1, the rest become H2
 - **Code blocks from indentation** — legal sub-clauses indented with 4+ spaces won't turn into code blocks
 - **Tab characters in headings** — strips tabs that DOCX converters insert
-
-## Webflow
-
-Works the same way:
-
-1. Add a div element, give it the custom attribute `data-md-content` with the URL to your `.md` file
-2. Paste the script tags in the page's custom code (before `</body>`)
-3. Optionally add the CSS link in the `<head>` custom code
 
 ## Files
 
 | File | Size | What it does |
 |------|------|-------------|
 | `legal-md.js` | ~1.5KB | Fetches, cleans, and renders Markdown |
-| `legal-md.css` | ~0.4KB | Optional table styles |
+| `legal-md.css` | ~0.4KB | Table styles (borders, padding, striped rows) |
 
 ## License
 
