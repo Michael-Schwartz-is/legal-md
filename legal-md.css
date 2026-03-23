@@ -1,0 +1,24 @@
+[data-md-content] table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2em 0;
+  font-size: 0.95rem;
+}
+
+[data-md-content] thead th {
+  background: #f8f9fa;
+  font-weight: 600;
+  text-align: left;
+  padding: 10px 14px;
+  border: 1px solid #dee2e6;
+}
+
+[data-md-content] tbody td {
+  padding: 10px 14px;
+  border: 1px solid #dee2e6;
+  vertical-align: top;
+}
+
+[data-md-content] tbody tr:nth-child(even) {
+  background: #f8f9fa;
+}
