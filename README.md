@@ -6,19 +6,9 @@ We built this for legal docs (terms of service, privacy policies, DPAs) that com
 
 ## Setup
 
-### 1. Add the scripts and table styles
+### 1. Add the script tags
 
-Paste in your site's global custom code. In Webflow, this goes in **Project Settings > Custom Code**.
-
-In the `<head>`:
-
-```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Michael-Schwartz-is/legal-md/legal-md.css">
-```
-
-![CSS link tag in the head section](images/css-tags.png)
-
-Before `</body>`:
+Paste these in your site's global custom code before the `</body>` tag. In Webflow, this goes in **Project Settings > Custom Code**.
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/marked@15.0.7/marked.min.js"></script>
@@ -26,6 +16,14 @@ Before `</body>`:
 ```
 
 ![Script tags before closing body tag](images/script-tags.png)
+
+If your Markdown files contain tables, add this stylesheet to the `<head>` tag. It adds borders, padding, and striped rows to table elements — skip it if you don't have tables or if your site already styles them.
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Michael-Schwartz-is/legal-md/legal-md.css">
+```
+
+![CSS link tag in the head section](images/css-tags.png)
 
 ### 2. Add a div with the attribute
 
